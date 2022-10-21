@@ -7,8 +7,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
-import com.example.mobprosjekt.R
-import com.example.mobprosjekt.databinding.ActivityProveBinding
+import com.example.datahentingtest.R
+import com.example.datahentingtest.databinding.ActivityProveBinding
 
 class ProveActivity : AppCompatActivity() {
     lateinit var binding: ActivityProveBinding

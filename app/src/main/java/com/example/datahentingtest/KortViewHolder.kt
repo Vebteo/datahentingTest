@@ -3,8 +3,8 @@ package com.example.datahentingtest
 import android.icu.text.AlphabeticIndex
 import androidx.recyclerview.widget.RecyclerView
 import com.example.datahentingtest.model.Post
-import com.example.mobprosjekt.R
-import com.example.mobprosjekt.databinding.ProveCardLayoutBinding
+import com.example.datahentingtest.R
+import com.example.datahentingtest.databinding.ProveCardLayoutBinding
 
 class KortViewHolder(
     private val cardCellBinding: ProveCardLayoutBinding

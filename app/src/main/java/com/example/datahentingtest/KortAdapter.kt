@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.datahentingtest.model.Post
-import com.example.mobprosjekt.databinding.ProveCardLayoutBinding
+import com.example.datahentingtest.databinding.ProveCardLayoutBinding
 
 class KortAdapter(private val prove: MutableList<Post>)
     : RecyclerView.Adapter<KortViewHolder>()

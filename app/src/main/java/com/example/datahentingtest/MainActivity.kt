@@ -8,12 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.datahentingtest.repository.Repository
-import com.example.mobprosjekt.R
+import com.example.datahentingtest.R
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.datahentingtest.model.Post
 import com.example.datahentingtest.model.proveListe
-import com.example.mobprosjekt.databinding.ActivityMainBinding
+import com.example.datahentingtest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         if(response.isSuccessful){
             Log.d("Response", response.body()?.brukerId.toString())
             textView.text = response.body()?.proveNavn!!
+            val post1 = Post(
+                response.body()?.brukerId!!,
+                response.body()?.proveNavn!!
+            )
+            proveListe.add(post1)
         } else {
           Log.d("response", response.errorBody().toString())
             textView.text = response.code().toString()
