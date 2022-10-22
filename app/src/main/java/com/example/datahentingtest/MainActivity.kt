@@ -1,8 +1,10 @@
 package com.example.datahentingtest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -51,5 +53,26 @@ class MainActivity : AppCompatActivity() {
             textView.text = response.code().toString()
         }
         })
+    }
+
+    fun velgSide(view: View, tall: Int) {
+        when(tall) {
+            1 -> {
+                val startIntent = Intent(this, MainActivity::class.java)
+                startActivity(startIntent)
+            }
+            2 -> {
+                val startIntent = Intent(this, ProfilActivity::class.java)
+                startActivity(startIntent)
+            }
+            3 -> {
+                val startIntent = Intent(this, LoginActivity::class.java)
+                startActivity(startIntent)
+            }
+        }
+    }
+    fun startProve(view: View) {
+        val startIntent = Intent(this, ProveActivity::class.java)
+        startActivity(startIntent)
     }
 }
