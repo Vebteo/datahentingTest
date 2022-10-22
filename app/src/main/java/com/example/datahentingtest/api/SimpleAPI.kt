@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface SimpleAPI {
     @GET("BrukerQuiz/GameOfThrones")
     suspend fun getPost(): Response<Post>
-    @GET("GameOfThrones")
+    @GET("GameOfThrones/1")
     suspend fun getProve(): Response<Prove>
 }

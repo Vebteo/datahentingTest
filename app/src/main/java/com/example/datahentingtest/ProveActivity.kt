@@ -26,7 +26,7 @@ class ProveActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prove)
-
+        hentProveData()
         hamburgerIkon = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
         binding.drawerLayout.addDrawerListener(hamburgerIkon)
         hamburgerIkon.syncState()
@@ -62,6 +62,12 @@ class ProveActivity : AppCompatActivity() {
                     response.body()?.Brukernavn!!
                 )
                 proveListe.add(prove1)
+
+                binding.radiogruppeTekst!!.text = prove1.OppgaveTekst
+                binding.radio1.text = prove1.RiktigSvar
+                binding.radio2.text = prove1.Svar2
+                binding.radio3.text = prove1.Svar3
+                binding.radio4.text = prove1.Svar4
             } else {
                 Log.d("response", response.errorBody().toString())
             }
