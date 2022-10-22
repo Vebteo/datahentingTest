@@ -4,7 +4,7 @@ package com.example.datahentingtest.model
 var proveListe = mutableListOf<Prove>()
 
 data class Prove (
-    val spørsmålNr: Int,
+    val SpørsmålNr: Int,
     val OppgaveTekst: String,
     val RiktigSvar: String,
     val Svar2: String,

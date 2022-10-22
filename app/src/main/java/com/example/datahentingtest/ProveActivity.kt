@@ -51,9 +51,8 @@ class ProveActivity : AppCompatActivity() {
         viewModel.getProve()
         viewModel.mutableProveResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
-                Log.d("Response", response.body()?.spørsmålNr.toString())
                 val prove1 = Prove(
-                    response.body()?.spørsmålNr!!,
+                    response.body()?.SpørsmålNr!!,
                     response.body()?.OppgaveTekst!!,
                     response.body()?.RiktigSvar!!,
                     response.body()?.Svar2!!,
@@ -61,7 +60,7 @@ class ProveActivity : AppCompatActivity() {
                     response.body()?.Svar4!!,
                     response.body()?.Brukernavn!!
                 )
-                proveListe.add(prove1)
+                //proveListe.add(prove1)
 
                 binding.radiogruppeTekst!!.text = prove1.OppgaveTekst
                 binding.radio1.text = prove1.RiktigSvar
