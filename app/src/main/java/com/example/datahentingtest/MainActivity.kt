@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        var textView : TextView = findViewById(R.id.tekstTesting)
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.myResponse.observe(this, Observer { response ->
         if(response.isSuccessful){
             Log.d("Response", response.body()?.brukerId.toString())
-            textView.text = response.body()?.proveNavn!!
             val post1 = Post(
                 response.body()?.brukerId!!,
                 response.body()?.proveNavn!!
@@ -65,7 +63,6 @@ class MainActivity : AppCompatActivity() {
             proveListe.add(post1)
         } else {
           Log.d("response", response.errorBody().toString())
-            textView.text = response.code().toString()
         }
         })
     }
