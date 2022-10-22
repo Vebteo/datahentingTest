@@ -23,6 +23,7 @@ class ProveActivity : AppCompatActivity() {
     lateinit var binding: ActivityProveBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle // Hamburger ikon
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prove)
