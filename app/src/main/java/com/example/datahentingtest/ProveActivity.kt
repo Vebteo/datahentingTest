@@ -3,14 +3,23 @@ package com.example.datahentingtest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.datahentingtest.R
 import com.example.datahentingtest.databinding.ActivityProveBinding
+import com.example.datahentingtest.model.Post
+import com.example.datahentingtest.model.Prove
+import com.example.datahentingtest.model.postListe
+import com.example.datahentingtest.model.proveListe
+import com.example.datahentingtest.repository.Repository
 
 class ProveActivity : AppCompatActivity() {
+    private lateinit var viewModel: MainViewModel
     lateinit var binding: ActivityProveBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle // Hamburger ikon
 
@@ -33,6 +42,30 @@ class ProveActivity : AppCompatActivity() {
                 true
             }
 
+    }
+    fun hentProveData(){
+
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel.getProve()
+        viewModel.mutableProveResponse.observe(this, Observer { response ->
+            if(response.isSuccessful){
+                Log.d("Response", response.body()?.spørsmålNr.toString())
+                val prove1 = Prove(
+                    response.body()?.spørsmålNr!!,
+                    response.body()?.OppgaveTekst!!,
+                    response.body()?.RiktigSvar!!,
+                    response.body()?.Svar2!!,
+                    response.body()?.Svar3!!,
+                    response.body()?.Svar4!!,
+                    response.body()?.Brukernavn!!
+                )
+                proveListe.add(prove1)
+            } else {
+                Log.d("response", response.errorBody().toString())
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

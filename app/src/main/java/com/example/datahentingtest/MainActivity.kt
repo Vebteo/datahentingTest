@@ -1,29 +1,20 @@
 package com.example.datahentingtest
 
-import android.app.appsearch.GlobalSearchSession
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.datahentingtest.repository.Repository
-import com.example.datahentingtest.R
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.datahentingtest.model.Post
-import com.example.datahentingtest.model.proveListe
+import com.example.datahentingtest.model.postListe
 import com.example.datahentingtest.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,11 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        kortProveHentKortProveHentProveHentKort()
+        hentKortData()
         val mainActivity = this
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext,1)
-            adapter = KortAdapter(proveListe)
+            adapter = KortAdapter(postListe)
         }
 
         binding.navView.setNavigationItemSelectedListener {
@@ -65,20 +56,20 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun kortProveHentKortProveHentProveHentKort(){
+    fun hentKortData(){
 
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         viewModel.getPost()
-        viewModel.myResponse.observe(this, Observer { response ->
+        viewModel.mutablePostResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
                 Log.d("Response", response.body()?.brukerId.toString())
                 val post1 = Post(
                     response.body()?.brukerId!!,
                     response.body()?.proveNavn!!
                 )
-                proveListe.add(post1)
+                postListe.add(post1)
             } else {
                 Log.d("response", response.errorBody().toString())
             }

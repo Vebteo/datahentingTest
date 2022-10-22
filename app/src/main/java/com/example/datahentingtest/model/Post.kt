@@ -1,6 +1,6 @@
 package com.example.datahentingtest.model
 
-var proveListe = mutableListOf<Post>()
+var postListe = mutableListOf<Post>()
 
 data class Post (
     val brukerId: Int,
