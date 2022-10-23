@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.datahentingtest.R
 import com.example.datahentingtest.databinding.ActivityProveBinding
-import com.example.datahentingtest.model.Post
 import com.example.datahentingtest.model.Prove
 import com.example.datahentingtest.model.postListe
 import com.example.datahentingtest.model.proveListe
@@ -49,7 +48,7 @@ class ProveActivity : AppCompatActivity() {
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getProve()
+        viewModel.getProve(2)
         viewModel.mutableProveResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
                 val prove1 = Prove(

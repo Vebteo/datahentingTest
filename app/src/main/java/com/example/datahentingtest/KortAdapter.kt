@@ -4,10 +4,10 @@ import android.icu.text.AlphabeticIndex
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.datahentingtest.model.Post
 import com.example.datahentingtest.databinding.ProveCardLayoutBinding
+import com.example.datahentingtest.model.Kort
 
-class KortAdapter(private val prove: List<Post>)
+class KortAdapter(private val prove: List<Kort>)
     : RecyclerView.Adapter<KortViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KortViewHolder {

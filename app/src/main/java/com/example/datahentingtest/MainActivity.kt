@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.datahentingtest.repository.Repository
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.datahentingtest.model.Post
 import com.example.datahentingtest.model.postListe
 import com.example.datahentingtest.databinding.ActivityMainBinding
+import com.example.datahentingtest.model.Kort
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.mutablePostResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
                 Log.d("Response", response.body()?.brukerId.toString())
-                val post1 = Post(
+                val post1 = Kort(
                     response.body()?.brukerId!!,
                     response.body()?.proveNavn!!
                 )

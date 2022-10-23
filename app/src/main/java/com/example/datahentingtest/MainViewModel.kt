@@ -3,7 +3,7 @@ package com.example.datahentingtest
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.datahentingtest.model.Post
+import com.example.datahentingtest.model.Kort
 import com.example.datahentingtest.model.Prove
 import com.example.datahentingtest.repository.Repository
 import kotlinx.coroutines.launch
@@ -11,19 +11,19 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository): ViewModel() {
 
-    val mutablePostResponse: MutableLiveData<Response<Post>> = MutableLiveData()
+    val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
     val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
 
     fun getPost() {
         viewModelScope.launch {
-            val responsePost :Response<Post> = repository.getPost()
+            val responsePost :Response<Kort> = repository.getPost()
             mutablePostResponse.value = responsePost
 
         }
     }
-    fun getProve() {
+    fun getProve(verdien: Int) {
         viewModelScope.launch {
-            val responseProve :Response<Prove> = repository.getProve()
+            val responseProve :Response<Prove> = repository.getProve(verdien)
             mutableProveResponse.value = responseProve
 
         }
