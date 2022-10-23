@@ -1,12 +1,16 @@
 package com.example.datahentingtest
 
 import android.content.Intent
+import android.icu.lang.UCharacter.GraphemeClusterBreak.V
+import android.os.Build.VERSION_CODES.M
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,12 +25,14 @@ class ProveActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     lateinit var binding: ActivityProveBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle // Hamburger ikon
+    var tallSpm = 1
+    var poengsum = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prove)
-        hentProveData()
+        hentProveData(tallSpm)
         hamburgerIkon = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
         binding.drawerLayout.addDrawerListener(hamburgerIkon)
         hamburgerIkon.syncState()
@@ -43,12 +49,12 @@ class ProveActivity : AppCompatActivity() {
             }
 
     }
-    fun hentProveData(){
+    fun hentProveData(testVerdi: Int ){
 
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getProve(2)
+        viewModel.getProve(testVerdi)
         viewModel.mutableProveResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
                 val prove1 = Prove(
@@ -98,11 +104,32 @@ class ProveActivity : AppCompatActivity() {
     }
 
     fun visResultat(view: View) {
+        /**
         binding.contactgroup.visibility = View.GONE
         binding.antSpm.visibility = View.GONE
         binding.resultatSkjerm.visibility = View.VISIBLE
         binding.progresjonBar.visibility = View.GONE
         binding.button2.visibility = View.GONE
+        */
+        if(binding.contactgroup.checkedRadioButtonId == -1) {
+         //   binding.txtBesvar.text = "Du må velge et svar"
+        } else {
+            when(binding.contactgroup.checkedRadioButtonId) {
+                R.id.radio1 -> poengsum = poengsum + 1
+            }
+
+
+
+        if(tallSpm == 3) {
+            binding.txtPoengsum!!.text = poengsum.toString()
+            binding.resultatSkjerm.visibility = View.VISIBLE
+        }
+    }
+
+        binding.contactgroup.clearCheck()
+        tallSpm += 1
+        hentProveData(tallSpm)
+        binding.progresjonBar.setProgress(tallSpm)
     }
 
     fun avsluttProve(view: View) {

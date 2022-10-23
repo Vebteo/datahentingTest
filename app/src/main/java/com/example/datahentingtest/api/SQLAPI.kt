@@ -13,6 +13,5 @@ interface SQLAPI {
     @GET("GameOfThrones/{SporsmalNr}")
     suspend fun getProve(@Path("SporsmalNr") SporsmalNr: Int): Response<Prove>
 
-
-
+    
 }

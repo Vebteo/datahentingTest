@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hentKortData(){
-
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
@@ -79,14 +78,17 @@ class MainActivity : AppCompatActivity() {
     fun velgSide(view: View, tall: Int) {
         when(tall) {
             1 -> {
+                finish()
                 val startIntent = Intent(this, MainActivity::class.java)
                 startActivity(startIntent)
             }
             2 -> {
+                finish()
                 val startIntent = Intent(this, ProfilActivity::class.java)
                 startActivity(startIntent)
             }
             3 -> {
+                finish()
                 val startIntent = Intent(this, LoginActivity::class.java)
                 startActivity(startIntent)
             }
