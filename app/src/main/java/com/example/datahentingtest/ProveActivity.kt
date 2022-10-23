@@ -18,7 +18,7 @@ class ProveActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     lateinit var binding: ActivityProveBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle // Hamburger ikon
-    var tallSpm = 1
+    private var tallSpm = 1
     var poengsum = 0
 
 
@@ -42,7 +42,7 @@ class ProveActivity : AppCompatActivity() {
             }
 
     }
-    fun hentProveData(testVerdi: Int ){
+    private fun hentProveData(testVerdi: Int ){
 
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
@@ -79,7 +79,7 @@ class ProveActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun velgSide(view: View, tall: Int) {
+    private fun velgSide(view: View, tall: Int) {
         when(tall) {
             1 -> {
                 val startIntent = Intent(this, MainActivity::class.java)

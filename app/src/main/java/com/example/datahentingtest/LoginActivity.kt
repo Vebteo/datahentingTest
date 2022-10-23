@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun velgSide(view: View, tall: Int) {
+    private fun velgSide(view: View, tall: Int) {
         when(tall) {
             1 -> {
                 val startIntent = Intent(this, MainActivity::class.java)

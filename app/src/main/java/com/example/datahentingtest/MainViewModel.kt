@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository): ViewModel() {
 
-    val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
+    private val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
     val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
     val mutableAlleProverResponse: MutableLiveData<Response<OverMappe>> = MutableLiveData()
 

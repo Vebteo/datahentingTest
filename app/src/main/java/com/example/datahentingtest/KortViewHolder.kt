@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.datahentingtest.databinding.ProveCardLayoutBinding
 import com.example.datahentingtest.model.Kort
 
-class KortViewHolder(
+ class KortViewHolder(
     private val cardCellBinding: ProveCardLayoutBinding
 ) : RecyclerView.ViewHolder(cardCellBinding.root) {
 

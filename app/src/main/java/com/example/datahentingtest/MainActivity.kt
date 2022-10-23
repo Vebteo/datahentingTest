@@ -1,19 +1,22 @@
 package com.example.datahentingtest
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.lifecycle.ViewModelProvider
 import com.example.datahentingtest.repository.Repository
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.datahentingtest.databinding.ActivityMainBinding
 import com.example.datahentingtest.model.kortListe
 import com.example.datahentingtest.model.Kort
+import com.example.datahentingtest.KortViewHolder
+import okhttp3.internal.notify
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun hentKortData(){
+    private fun hentKortData(){
         /**
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
@@ -94,10 +97,11 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
     }
 
 
-    fun velgSide(view: View, tall: Int) {
+    private fun velgSide(view: View, tall: Int) {
         when(tall) {
             1 -> {
                 finish()
