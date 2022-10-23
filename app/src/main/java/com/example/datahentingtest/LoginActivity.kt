@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
-import com.example.datahentingtest.R
 import com.example.datahentingtest.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

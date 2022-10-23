@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.example.datahentingtest.model.Kort
-import com.example.datahentingtest.model.OverMappe
 import com.example.datahentingtest.repository.Repository
 
 class TestActivity : AppCompatActivity() {

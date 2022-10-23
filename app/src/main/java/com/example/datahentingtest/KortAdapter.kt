@@ -1,6 +1,5 @@
 package com.example.datahentingtest
 
-import android.icu.text.AlphabeticIndex
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
