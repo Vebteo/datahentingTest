@@ -1,24 +1,17 @@
 package com.example.datahentingtest
 
 import android.content.Intent
-import android.icu.lang.UCharacter.GraphemeClusterBreak.V
-import android.os.Build.VERSION_CODES.M
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.datahentingtest.R
 import com.example.datahentingtest.databinding.ActivityProveBinding
 import com.example.datahentingtest.model.Prove
-import com.example.datahentingtest.model.postListe
-import com.example.datahentingtest.model.proveListe
 import com.example.datahentingtest.repository.Repository
 
 class ProveActivity : AppCompatActivity() {
@@ -104,32 +97,29 @@ class ProveActivity : AppCompatActivity() {
     }
 
     fun visResultat(view: View) {
-        /**
-        binding.contactgroup.visibility = View.GONE
-        binding.antSpm.visibility = View.GONE
-        binding.resultatSkjerm.visibility = View.VISIBLE
-        binding.progresjonBar.visibility = View.GONE
-        binding.button2.visibility = View.GONE
-        */
+
         if(binding.contactgroup.checkedRadioButtonId == -1) {
          //   binding.txtBesvar.text = "Du må velge et svar"
-        } else {
+        }
+        else {
             when(binding.contactgroup.checkedRadioButtonId) {
                 R.id.radio1 -> poengsum = poengsum + 1
             }
 
-
-
-        if(tallSpm == 3) {
+        if(poengsum == 3) {
             binding.txtPoengsum!!.text = poengsum.toString()
+            binding.contactgroup.visibility = View.GONE
+            binding.antSpm.visibility = View.GONE
             binding.resultatSkjerm.visibility = View.VISIBLE
+            binding.progresjonBar.visibility = View.GONE
+            binding.button2.visibility = View.GONE
         }
-    }
 
         binding.contactgroup.clearCheck()
         tallSpm += 1
         hentProveData(tallSpm)
         binding.progresjonBar.setProgress(tallSpm)
+        }
     }
 
     fun avsluttProve(view: View) {

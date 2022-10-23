@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.datahentingtest.model.Kort
+import com.example.datahentingtest.model.OverMappe
 import com.example.datahentingtest.model.Prove
 import com.example.datahentingtest.repository.Repository
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 
     val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
     val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
+    val mutableAlleProverResponse: MutableLiveData<Response<OverMappe>> = MutableLiveData()
 
     fun getPost() {
         viewModelScope.launch {
@@ -26,6 +28,13 @@ class MainViewModel(private val repository: Repository): ViewModel() {
             val responseProve :Response<Prove> = repository.getProve(verdien)
             mutableProveResponse.value = responseProve
 
+        }
+    }
+
+    fun getAlleProver() {
+        viewModelScope.launch {
+            val responseAlleProver : Response<OverMappe> = repository.getAlleProver()
+            mutableAlleProverResponse.value = responseAlleProver
         }
     }
 
