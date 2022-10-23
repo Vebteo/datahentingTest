@@ -23,9 +23,9 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 
         }
     }
-    fun getProve(verdien: Int) {
+    fun getProve(verdien: Int, verdien2: String) {
         viewModelScope.launch {
-            val responseProve :Response<Prove> = repository.getProve(verdien)
+            val responseProve :Response<Prove> = repository.getProve(verdien, verdien2)
             mutableProveResponse.value = responseProve
 
         }

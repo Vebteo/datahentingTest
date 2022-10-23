@@ -11,8 +11,10 @@ interface SQLAPI {
     @GET("BrukerQuiz/GameOfThrones")
     suspend fun getPost(): Response<Kort>
 
-    @GET("GameOfThrones/{SporsmalNr}")
-    suspend fun getProve(@Path("SporsmalNr") SporsmalNr: Int): Response<Prove>
+    @GET("{proveNavn}/{SporsmalNr}")
+    suspend fun getProve(@Path("SporsmalNr") SporsmalNr: Int,
+                         @Path("proveNavn") proveNavn: String
+                         ): Response<Prove>
 
     @GET("BrukerQuiz")
     suspend fun getAlleProver(): Response<OverMappe>

@@ -19,13 +19,14 @@ class ProveActivity : AppCompatActivity() {
     lateinit var binding: ActivityProveBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle // Hamburger ikon
     private var tallSpm = 1
+    private var navnSpm = "a"
     var poengsum = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prove)
-        hentProveData(tallSpm)
+        hentProveData(tallSpm, navnSpm)
         hamburgerIkon = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
         binding.drawerLayout.addDrawerListener(hamburgerIkon)
         hamburgerIkon.syncState()
@@ -42,12 +43,12 @@ class ProveActivity : AppCompatActivity() {
             }
 
     }
-    private fun hentProveData(testVerdi: Int ){
+    private fun hentProveData(testVerdi: Int, testVerdi2: String){
 
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getProve(testVerdi)
+        viewModel.getProve(testVerdi, testVerdi2)
         viewModel.mutableProveResponse.observe(this, Observer { response ->
             if(response.isSuccessful){
                 val prove1 = Prove(
@@ -117,7 +118,7 @@ class ProveActivity : AppCompatActivity() {
 
         binding.contactgroup.clearCheck()
         tallSpm += 1
-        hentProveData(tallSpm)
+        hentProveData(tallSpm, navnSpm)
         binding.progresjonBar.setProgress(tallSpm)
         }
     }
