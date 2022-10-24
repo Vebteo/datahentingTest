@@ -4,4 +4,4 @@ var overMappeListe = mutableListOf<OverMappe>()
 
 data class OverMappe (
     val records: List<Kort>
-    )
+)

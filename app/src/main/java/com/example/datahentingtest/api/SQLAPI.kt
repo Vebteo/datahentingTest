@@ -21,5 +21,5 @@ interface SQLAPI {
     suspend fun getAlleProver(): Response<OverMappe>
 
     @GET("{proveNavn}")
-    suspend fun getStorrelse(@Path("proveNavn") proveNavn: String): Response<OverTest>
+    suspend fun getProven(@Path("proveNavn") proveNavn: String): Response<OverTest>
 }

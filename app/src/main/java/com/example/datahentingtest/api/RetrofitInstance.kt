@@ -21,6 +21,4 @@ object RetrofitInstance {
     val api: SQLAPI by lazy {
         retrofit.create(SQLAPI::class.java)
     }
-
-
 }

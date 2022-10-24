@@ -13,9 +13,8 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-
+/**
         val teksten : TextView = findViewById(R.id.testerTekstingen)
-
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
@@ -26,8 +25,6 @@ class TestActivity : AppCompatActivity() {
                 Log.d("Response", response.body()!!.records.size.toString())
             }
         }
-
-
-
+        */
     }
 }

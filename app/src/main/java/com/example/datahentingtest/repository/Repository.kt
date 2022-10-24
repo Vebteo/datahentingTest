@@ -8,7 +8,6 @@ import com.example.datahentingtest.model.OverTest
 import retrofit2.Response
 
 class Repository {
-
     suspend fun getPost(): Response<Kort> {
         return RetrofitInstance.api.getPost()
     }
@@ -20,8 +19,7 @@ class Repository {
         return RetrofitInstance.api.getAlleProver()
     }
 
-    suspend fun getStorrelse(verdier: String): Response<OverTest> {
-        return RetrofitInstance.api.getStorrelse(verdier)
+    suspend fun getProven(verdier: String): Response<OverTest> {
+        return RetrofitInstance.api.getProven(verdier)
     }
-
 }

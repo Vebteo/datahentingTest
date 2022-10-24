@@ -12,26 +12,24 @@ import com.example.datahentingtest.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle
+    lateinit var startIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-
         hamburgerIkon= ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
         binding.drawerLayout.addDrawerListener(hamburgerIkon)
         hamburgerIkon.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         binding.navView.setNavigationItemSelectedListener {
-                when(it.itemId){
-                    R.id.hjemItem->{ velgSide(binding.drawerLayout,1) }
-                    R.id.profilItem->{ velgSide(binding.drawerLayout,2) }
-                    R.id.loginItem->{ velgSide(binding.drawerLayout,3) }
-                }
-                true
+            when(it.itemId){
+                R.id.hjemItem -> startIntent = Intent(this, MainActivity::class.java)
+                R.id.profilItem -> startIntent = Intent(this, ProfilActivity::class.java)
+                R.id.loginItem -> startIntent = Intent(this, LoginActivity::class.java)
             }
-
+            startActivity(startIntent)
+            true
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -41,27 +39,9 @@ class LoginActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun velgSide(view: View, tall: Int) {
-        when(tall) {
-            1 -> {
-                val startIntent = Intent(this, MainActivity::class.java)
-                startActivity(startIntent)
-            }
-            2 -> {
-                val startIntent = Intent(this, ProfilActivity::class.java)
-                startActivity(startIntent)
-            }
-            3 -> {
-                val startIntent = Intent(this, LoginActivity::class.java)
-                startActivity(startIntent)
-            }
-        }
-    }
-
     fun loggInn(view: View) {
         val intent = Intent(this, ProfilActivity::class.java)
         startActivity(intent)
         finish()
     }
-
 }

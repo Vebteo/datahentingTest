@@ -12,11 +12,10 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MainViewModel(private val repository: Repository): ViewModel() {
-
     private val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
     val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
     val mutableAlleProverResponse: MutableLiveData<Response<OverMappe>> = MutableLiveData()
-    val mutableStorrelseResponse: MutableLiveData<Response<OverTest>> = MutableLiveData()
+    val mutableProvenResponse: MutableLiveData<Response<OverTest>> = MutableLiveData()
 
     fun getPost() {
         viewModelScope.launch {
@@ -25,6 +24,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 
         }
     }
+
     fun getProve(verdien: Int, verdien2: String) {
         viewModelScope.launch {
             val responseProve :Response<Prove> = repository.getProve(verdien, verdien2)
@@ -40,12 +40,10 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         }
     }
 
-    fun getStorrelse(verdier: String) {
+    fun getProven(verdier: String) {
         viewModelScope.launch {
-            val responseStorrese : Response<OverTest> = repository.getStorrelse(verdier)
-            mutableStorrelseResponse.value = responseStorrese
+            val responseProven : Response<OverTest> = repository.getProven(verdier)
+            mutableProvenResponse.value = responseProven
         }
     }
-
-
 }

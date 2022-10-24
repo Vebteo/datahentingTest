@@ -6,8 +6,7 @@ import com.example.datahentingtest.model.Kort
 
  class KortViewHolder(
     private val cardCellBinding: ProveCardLayoutBinding,
-    private val clickListener: KortClickListener
-) : RecyclerView.ViewHolder(cardCellBinding.root) {
+    private val clickListener: KortClickListener) : RecyclerView.ViewHolder(cardCellBinding.root) {
 
     fun bindProve(prove: Kort) {
         cardCellBinding.cardImage.setImageResource(R.drawable.blyant)

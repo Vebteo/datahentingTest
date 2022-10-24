@@ -7,8 +7,7 @@ import com.example.datahentingtest.databinding.ProveCardLayoutBinding
 import com.example.datahentingtest.model.Kort
 
 class KortAdapter(private val prove: List<Kort>,
-                  private val clickListener: KortClickListener)
-    : RecyclerView.Adapter<KortViewHolder>()
+                  private val clickListener: KortClickListener) : RecyclerView.Adapter<KortViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KortViewHolder {
         val fra = LayoutInflater.from(parent.context)
