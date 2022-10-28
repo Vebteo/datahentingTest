@@ -9,7 +9,10 @@ import com.example.datahentingtest.model.Kort
 class KortAdapter(private val prove: List<Kort>,
                   private val clickListener: KortClickListener) : RecyclerView.Adapter<KortViewHolder>()
 {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KortViewHolder {
+
         val fra = LayoutInflater.from(parent.context)
         val binding = ProveCardLayoutBinding.inflate(fra, parent, false)
         return KortViewHolder(binding, clickListener)
@@ -20,4 +23,5 @@ class KortAdapter(private val prove: List<Kort>,
     }
 
     override fun getItemCount(): Int = prove.size
+
 }

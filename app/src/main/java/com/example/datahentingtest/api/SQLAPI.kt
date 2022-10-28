@@ -1,9 +1,7 @@
 package com.example.datahentingtest.api
 
-import com.example.datahentingtest.model.Kort
-import com.example.datahentingtest.model.OverMappe
-import com.example.datahentingtest.model.OverTest
-import com.example.datahentingtest.model.Prove
+import com.example.datahentingtest.R
+import com.example.datahentingtest.model.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,4 +20,7 @@ interface SQLAPI {
 
     @GET("{proveNavn}")
     suspend fun getProven(@Path("proveNavn") proveNavn: String): Response<OverTest>
+
+    @GET("users?filter=usersUid,eq,{brukerNavn}&include=usersPwd")
+    suspend fun getBruker(@Path("brukerNavn") brukerNavn: String): Response<OverBruker>
 }

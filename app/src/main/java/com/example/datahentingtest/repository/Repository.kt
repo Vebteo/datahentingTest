@@ -1,10 +1,7 @@
 package com.example.datahentingtest.repository
 
 import com.example.datahentingtest.api.RetrofitInstance
-import com.example.datahentingtest.model.Kort
-import com.example.datahentingtest.model.Prove
-import com.example.datahentingtest.model.OverMappe
-import com.example.datahentingtest.model.OverTest
+import com.example.datahentingtest.model.*
 import retrofit2.Response
 
 class Repository {
@@ -21,5 +18,9 @@ class Repository {
 
     suspend fun getProven(verdier: String): Response<OverTest> {
         return RetrofitInstance.api.getProven(verdier)
+    }
+    
+    suspend fun getBruker(verdi: String): Response<OverBruker> {
+        return RetrofitInstance.api.getBruker(verdi)
     }
 }

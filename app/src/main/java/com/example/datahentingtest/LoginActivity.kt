@@ -8,8 +8,16 @@ import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import com.example.datahentingtest.databinding.ActivityLoginBinding
+import com.example.datahentingtest.model.kortListe
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.datahentingtest.model.Bruker
+import com.example.datahentingtest.model.Prove
+import com.example.datahentingtest.repository.Repository
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var viewModel: MainViewModel
     lateinit var binding: ActivityLoginBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle
     lateinit var startIntent: Intent
@@ -28,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 R.id.loginItem -> startIntent = Intent(this, LoginActivity::class.java)
             }
             startActivity(startIntent)
+            finish()
             true
         }
     }
@@ -40,8 +49,32 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun loggInn(view: View) {
-        val intent = Intent(this, ProfilActivity::class.java)
-        startActivity(intent)
-        finish()
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        viewModel.getBruker("Magnus")
+        viewModel.mutableBrukerResponse.observe(this) { response ->
+            if (response.isSuccessful) {
+                val bruker1 = Bruker(response.body()!!.records[0].usersPwd)
+                Toast.makeText(applicationContext, "Brukereren finnes JIPPI", Toast.LENGTH_SHORT).show();
+
+            } /*else {
+                Toast.makeText(applicationContext, "Brukernavn finnes ikke ;((((", Toast.LENGTH_SHORT).show();
+            } */
+        }
+
+/**
+        if(binding.editTextTextPersonName.text.toString().length == 0) {
+            Toast.makeText(applicationContext, "Du må fylle ut brukernavn feltet :DDDD", Toast.LENGTH_SHORT).show();
+        }
+        else if(binding.editTextTextPassword.text.toString().length == 0) {
+            Toast.makeText(applicationContext, "Du må fylle ut passord feltet :DDDD", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        */
     }
 }

@@ -3,23 +3,21 @@ package com.example.datahentingtest
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.datahentingtest.model.Kort
-import com.example.datahentingtest.model.OverMappe
-import com.example.datahentingtest.model.OverTest
-import com.example.datahentingtest.model.Prove
+import com.example.datahentingtest.model.*
 import com.example.datahentingtest.repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MainViewModel(private val repository: Repository): ViewModel() {
     private val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
-    val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
+    private val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
     val mutableAlleProverResponse: MutableLiveData<Response<OverMappe>> = MutableLiveData()
     val mutableProvenResponse: MutableLiveData<Response<OverTest>> = MutableLiveData()
+    val mutableBrukerResponse: MutableLiveData<Response<OverBruker>> = MutableLiveData()
 
     fun getPost() {
         viewModelScope.launch {
-            val responsePost :Response<Kort> = repository.getPost()
+            val responsePost: Response<Kort> = repository.getPost()
             mutablePostResponse.value = responsePost
 
         }
@@ -34,7 +32,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
     }
 
     fun getAlleProver() {
-        viewModelScope.launch {
+        viewModelScope.launch{
             val responseAlleProver : Response<OverMappe> = repository.getAlleProver()
             mutableAlleProverResponse.value = responseAlleProver
         }
@@ -44,6 +42,13 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             val responseProven : Response<OverTest> = repository.getProven(verdier)
             mutableProvenResponse.value = responseProven
+        }
+    }
+
+    fun getBruker(verdi: String) {
+        viewModelScope.launch {
+            val responseBruker : Response<OverBruker> = repository.getBruker(verdi)
+            mutableBrukerResponse.value = responseBruker
         }
     }
 }

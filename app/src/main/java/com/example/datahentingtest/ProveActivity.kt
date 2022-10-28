@@ -47,6 +47,7 @@ class ProveActivity : AppCompatActivity() {
                 R.id.loginItem -> startIntent = Intent(this, LoginActivity::class.java)
             }
             startActivity(startIntent)
+            finish()
             true
         }
     }
@@ -108,25 +109,25 @@ class ProveActivity : AppCompatActivity() {
         }
         else {
             if(binding.contactgroup.checkedRadioButtonId == -1) {
-                Toast.makeText(getApplicationContext(), "Du må velge ett svaralternativ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(applicationContext, "Du må velge ett svaralternativ", Toast.LENGTH_SHORT).show();
             }
             else {
                 when (binding.contactgroup.checkedRadioButtonId) {
                     R.id.radio1 -> {
                         if (binding.radio1.text == riktigSvaret)
-                            poengsum = poengsum + 1
+                            poengsum += 1
                     }
                     R.id.radio2 -> {
                         if (binding.radio2.text == riktigSvaret)
-                            poengsum = poengsum + 1
+                            poengsum += 1
                     }
                     R.id.radio3 -> {
                         if (binding.radio3.text == riktigSvaret)
-                            poengsum = poengsum + 1
+                            poengsum += 1
                     }
                     R.id.radio4 -> {
                         if (binding.radio4.text == riktigSvaret)
-                            poengsum = poengsum + 1
+                            poengsum += 1
                     }
                 }
                 binding.contactgroup.clearCheck()

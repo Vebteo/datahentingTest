@@ -23,7 +23,7 @@ import okhttp3.internal.notify
 class MainActivity : AppCompatActivity(), KortClickListener {
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
-    lateinit var hamburgerIkon: ActionBarDrawerToggle
+    private lateinit var hamburgerIkon: ActionBarDrawerToggle
     lateinit var startIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), KortClickListener {
         binding.drawerLayout.addDrawerListener(hamburgerIkon)
         hamburgerIkon.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         hentKortData()
         val mainActivity = this
         binding.recyclerView.apply {
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity(), KortClickListener {
                 R.id.loginItem -> startIntent = Intent(this, LoginActivity::class.java)
             }
             startActivity(startIntent)
+            finish()
             true
         }
     }
@@ -65,22 +65,26 @@ class MainActivity : AppCompatActivity(), KortClickListener {
     }
 
     private fun hentKortData(){
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getAlleProver()
-        viewModel.mutableAlleProverResponse.observe(this) { response ->
-            if (response.isSuccessful) {
-               //teksten.text = response.body()!!.records[0].proveNavn
-               var i = 0
-               while(i < response.body()!!.records.size-1) {
-                   val post1 = Kort(
-                    response.body()?.records!![i].brukerId!!,
-                    response.body()?.records!![i].proveNavn!!
-                    )
-                    kortListe.add(post1)
-                    i++
-               }
+        if(kortListe.size > 0) {
+        }
+        else {
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+            viewModel.getAlleProver()
+            viewModel.mutableAlleProverResponse.observe(this) { response ->
+                if (response.isSuccessful) {
+                    //teksten.text = response.body()!!.records[0].proveNavn
+                    var i = 0
+                    while(i < response.body()!!.records.size-1) {
+                        val post1 = Kort(
+                            response.body()?.records!![i].brukerId!!,
+                            response.body()?.records!![i].proveNavn!!
+                            )
+                            kortListe.add(post1)
+                            i++
+                    }
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.datahentingtest
 
 import android.content.Intent
+import android.os.Build.VERSION_CODES.S
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,7 +13,8 @@ import com.example.datahentingtest.databinding.ActivityProfilBinding
 class ProfilActivity : AppCompatActivity() {
     lateinit var binding: ActivityProfilBinding
     lateinit var hamburgerIkon: ActionBarDrawerToggle
-    lateinit var startIntent: Intent
+    private lateinit var startIntent: Intent
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class ProfilActivity : AppCompatActivity() {
                 R.id.loginItem -> startIntent = Intent(this, LoginActivity::class.java)
             }
             startActivity(startIntent)
+            finish()
             true
         }
     }
