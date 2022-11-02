@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), KortClickListener {
                 if (response.isSuccessful) {
                     //teksten.text = response.body()!!.records[0].proveNavn
                     var i = 0
-                    while(i < response.body()!!.records.size-1) {
+                    while(i < response.body()!!.records.size) {
                         val post1 = Kort(
                             response.body()?.records!![i].brukerId!!,
                             response.body()?.records!![i].proveNavn!!
