@@ -9,19 +9,10 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MainViewModel(private val repository: Repository): ViewModel() {
-    private val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
     private val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
     val mutableAlleProverResponse: MutableLiveData<Response<RecordsKort>> = MutableLiveData()
     val mutableProvenResponse: MutableLiveData<Response<RecordsTest>> = MutableLiveData()
     val mutableBrukerResponse: MutableLiveData<Response<RecordsBruker>> = MutableLiveData()
-
-    fun getPost() {
-        viewModelScope.launch {
-            val responsePost: Response<Kort> = repository.getPost()
-            mutablePostResponse.value = responsePost
-
-        }
-    }
 
     fun getProve(verdien: Int, verdien2: String) {
         viewModelScope.launch {

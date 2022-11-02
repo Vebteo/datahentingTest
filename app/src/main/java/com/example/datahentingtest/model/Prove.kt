@@ -1,7 +1,5 @@
 package com.example.datahentingtest.model
 
-var proveListe = mutableListOf<Prove>()
-
 data class Prove (
     val SpørsmålNr: Int,
     val OppgaveTekst: String,

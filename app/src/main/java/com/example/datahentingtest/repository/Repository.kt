@@ -5,9 +5,6 @@ import com.example.datahentingtest.model.*
 import retrofit2.Response
 
 class Repository {
-    suspend fun getPost(): Response<Kort> {
-        return RetrofitInstance.api.getPost()
-    }
     suspend fun getProve(verdi: Int, verdi2: String): Response<Prove> {
         return RetrofitInstance.api.getProve(verdi, verdi2)
     }
