@@ -12,15 +12,15 @@ class Repository {
         return RetrofitInstance.api.getProve(verdi, verdi2)
     }
 
-    suspend fun getAlleProver(): Response<OverMappe> {
+    suspend fun getAlleProver(): Response<RecordsKort> {
         return RetrofitInstance.api.getAlleProver()
     }
 
-    suspend fun getProven(verdier: String): Response<OverTest> {
+    suspend fun getProven(verdier: String): Response<RecordsTest> {
         return RetrofitInstance.api.getProven(verdier)
     }
     
-    suspend fun getBruker(verdi: String): Response<OverBruker> {
+    suspend fun getBruker(verdi: String): Response<RecordsBruker> {
         return RetrofitInstance.api.getBruker(verdi)
     }
 }

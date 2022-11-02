@@ -1,4 +1,4 @@
-package com.example.datahentingtest
+package com.example.datahentingtest.kort
 
 import com.example.datahentingtest.model.Kort
 

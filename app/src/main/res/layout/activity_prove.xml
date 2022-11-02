@@ -58,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border"
-                android:text="Oppgavetekst"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -66,29 +65,25 @@
                 android:id="@+id/radio1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="Svaralternativ 1" />
+                 />
 
             <RadioButton
                 android:id="@+id/radio2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="Svaralternativ 2" />
+                />
 
             <RadioButton
                 android:id="@+id/radio3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="Svaralternativ 3" />
+                 />
 
             <RadioButton
                 android:id="@+id/radio4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="Svaralternativ 4" />
+                 />
 
 
         </RadioGroup>

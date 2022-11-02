@@ -1,24 +1,23 @@
 package com.example.datahentingtest
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.datahentingtest.repository.Repository
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.datahentingtest.databinding.ActivityMainBinding
 import com.example.datahentingtest.model.kortListe
 import com.example.datahentingtest.model.Kort
-import com.example.datahentingtest.KortViewHolder
+import com.example.datahentingtest.kort.KortAdapter
+import com.example.datahentingtest.kort.KortClickListener
 import com.example.datahentingtest.model.KORT_ID
-import okhttp3.internal.notify
+import com.example.datahentingtest.viewModel.MainViewModel
+import com.example.datahentingtest.viewModel.MainViewModelFactory
 
 class MainActivity : AppCompatActivity(), KortClickListener {
     private lateinit var viewModel: MainViewModel

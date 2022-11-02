@@ -1,4 +1,4 @@
-package com.example.datahentingtest
+package com.example.datahentingtest.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,9 +11,9 @@ import retrofit2.Response
 class MainViewModel(private val repository: Repository): ViewModel() {
     private val mutablePostResponse: MutableLiveData<Response<Kort>> = MutableLiveData()
     private val mutableProveResponse: MutableLiveData<Response<Prove>> = MutableLiveData()
-    val mutableAlleProverResponse: MutableLiveData<Response<OverMappe>> = MutableLiveData()
-    val mutableProvenResponse: MutableLiveData<Response<OverTest>> = MutableLiveData()
-    val mutableBrukerResponse: MutableLiveData<Response<OverBruker>> = MutableLiveData()
+    val mutableAlleProverResponse: MutableLiveData<Response<RecordsKort>> = MutableLiveData()
+    val mutableProvenResponse: MutableLiveData<Response<RecordsTest>> = MutableLiveData()
+    val mutableBrukerResponse: MutableLiveData<Response<RecordsBruker>> = MutableLiveData()
 
     fun getPost() {
         viewModelScope.launch {
@@ -33,21 +33,21 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 
     fun getAlleProver() {
         viewModelScope.launch{
-            val responseAlleProver : Response<OverMappe> = repository.getAlleProver()
+            val responseAlleProver : Response<RecordsKort> = repository.getAlleProver()
             mutableAlleProverResponse.value = responseAlleProver
         }
     }
 
     fun getProven(verdier: String) {
         viewModelScope.launch {
-            val responseProven : Response<OverTest> = repository.getProven(verdier)
+            val responseProven : Response<RecordsTest> = repository.getProven(verdier)
             mutableProvenResponse.value = responseProven
         }
     }
 
     fun getBruker(verdi: String) {
         viewModelScope.launch {
-            val responseBruker : Response<OverBruker> = repository.getBruker(verdi)
+            val responseBruker : Response<RecordsBruker> = repository.getBruker(verdi)
             mutableBrukerResponse.value = responseBruker
         }
     }

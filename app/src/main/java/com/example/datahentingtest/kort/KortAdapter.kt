@@ -1,4 +1,4 @@
-package com.example.datahentingtest
+package com.example.datahentingtest.kort
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,8 @@ import com.example.datahentingtest.databinding.ProveCardLayoutBinding
 import com.example.datahentingtest.model.Kort
 
 class KortAdapter(private val prove: List<Kort>,
-                  private val clickListener: KortClickListener) : RecyclerView.Adapter<KortViewHolder>()
+                  private val clickListener: KortClickListener
+) : RecyclerView.Adapter<KortViewHolder>()
 {
 
 
